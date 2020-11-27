@@ -91,10 +91,6 @@ TODO()
 - The tool chosen here is [Jacoco](https://github.com/jacoco/jacoco) due to its nature and popularity in the community. 
  - The gradlew task and its configuration could be found inside [`quality.gradle.kts`](https://github.com/android10/android-trinity/blob/main/buildSrc/src/main/kotlin/scripts/quality.gradle.kts) file.
 
-## How to Contribute
-
-Nothing is set in stone here and things can change and evolve based on the community work and requirements. So if you want to contribute, feel free to open an [issue](https://github.com/android10/android-trinity/issues) and label it properly: **Bug**, **Enhancement**, etc.. or send a [PR](https://github.com/android10/android-trinity/pulls). Please both with a good descriptions of the intention, in order to facilitate review
-
 ## TODO List
 
 - [ ] Gradle Tasks for Publishing to Google Play: [App Bundles](https://developer.android.com/guide/app-bundle).
@@ -103,6 +99,10 @@ Nothing is set in stone here and things can change and evolve based on the commu
 - [ ] Rename default packages to `io.android-trinity` or `io.android.trinity`.
 - [ ] ???
 - [ ] ???
+
+## How to Contribute
+
+Nothing is set in stone here and things can change and evolve based on the community work and requirements. So if you want to contribute, feel free to open an [issue](https://github.com/android10/android-trinity/issues) and label it properly: **Bug**, **Enhancement**, etc.. or send a [PR](https://github.com/android10/android-trinity/pulls). Please both with a good descriptions of the intention, in order to facilitate review
 
 ## License
 
