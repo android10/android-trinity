@@ -12,17 +12,17 @@ Yes, android studio might create a project for you, but there are missing parts,
  - `Kotlin DSL` by default at Gradle build system leve.
  - Static Analisis Code Report (Detekt).
  - Code Coverage Report (Jacoco).
- - Base Classes: `BaseActivity` and `BaseFragments`.
+ - Base Classes: [`BaseActivity`](https://github.com/android10/android-trinity/blob/main/app/src/main/kotlin/com/fernandocejas/sample/core/platform/BaseActivity.kt) and [`BaseFragments`](https://github.com/android10/android-trinity/blob/main/app/src/main/kotlin/com/fernandocejas/sample/core/platform/BaseFragment.kt).
  - Toolbar with styles pre-defined.
- - Pre-setup Test clases: `UnitTest`, `AndroidTest`, `AcceptanceTest`.
- - Pre-compiled Gradle Scripts (`buildScr folder`) organized by aspects:
-    - `compilation.gradle.kts`
-    - `infrastructure.gradle.kts`
-    - `quality.gradle.kts`
-    - `variants.gradle.kts`
- - Dependencies Management in one place: `Dependencies.kt`
+ - Pre-setup Test clases: [`UnitTest`](https://github.com/android10/android-trinity/blob/main/app/src/test/kotlin/com/fernandocejas/sample/UnitTest.kt), [`AndroidTest`](https://github.com/android10/android-trinity/blob/main/app/src/test/kotlin/com/fernandocejas/sample/AndroidTest.kt), [`AcceptanceTest`](https://github.com/android10/android-trinity/blob/main/app/src/androidTest/kotlin/com/fernandocejas/sample/AcceptanceTest.kt).
+ - Pre-compiled Gradle Scripts (`buildScr` folder) organized by aspects:
+    - [`compilation.gradle.kts`](https://github.com/android10/android-trinity/blob/main/buildSrc/src/main/kotlin/scripts/compilation.gradle.kts)
+    - [`infrastructure.gradle.kts`](https://github.com/android10/android-trinity/blob/main/buildSrc/src/main/kotlin/scripts/infrastructure.gradle.kts)
+    - [`quality.gradle.kts`](https://github.com/android10/android-trinity/blob/main/buildSrc/src/main/kotlin/scripts/quality.gradle.kts)
+    - [`variants.gradle.kts`](https://github.com/android10/android-trinity/blob/main/buildSrc/src/main/kotlin/scripts/variants.gradle.kts)
+ - Dependencies Management in one place: [`Dependencies.kt`](https://github.com/android10/android-trinity/blob/main/buildSrc/src/main/kotlin/Dependencies.kt)
  - LeakCanary for leaks detection.
- - Pre-defined Build Variants (check `variants.gradle.kts` file)
+ - Pre-defined Build Variants (check [`variants.gradle.kts`](https://github.com/android10/android-trinity/blob/main/buildSrc/src/main/kotlin/scripts/variants.gradle.kts) file)
     - Build Types:
         - `DEBUG`
         - `RELEASE`
@@ -60,7 +60,7 @@ At the time being there are a couple of manual steps involved since we are at a 
 
 ## Using Test Helpers
 
-Let's say you want to write tests (and you should ALWAYS do), As mentioned there are 3 classes which come into play and here examples of their usage:
+Let's say you want to write tests (and you should **ALWAYS** do), As mentioned there are 3 classes which come into play and here examples of their usage:
  
 - `UnitTest.kt`: Unit Test base class which setup mocks for you (You only use the `@Mockk` annotation)
 
@@ -68,13 +68,13 @@ Let's say you want to write tests (and you should ALWAYS do), As mentioned there
 TODO()
 ```
 
-- `AndroidTest.kt`: Integration Test base class which setup mocks for you (You only use the `@Mockk` annotation). You might use this classes when they are Android Components involved. It is backed up by [Robolectric]().
+- `AndroidTest.kt`: Integration Test base class which setup mocks for you (You only use the `@Mockk` annotation). You might use this classes when they are Android Components involved. It is backed up by [Robolectric](https://github.com/robolectric/robolectric).
 
 ```kotlin 
 TODO()
 ```
 
-- `AcceptanceTest.kt`: UI Test base class which setup [Espresso] for you
+- `AcceptanceTest.kt`: UI Test base class which setup [Espresso](https://developer.android.com/training/testing/espresso) for you
 
 ```kotlin 
 TODO()
@@ -82,21 +82,25 @@ TODO()
 
 ## Quality Reports: Static Analysis
 
-TODO(): Config folder
+ - The tool chosen here is [Detekt](https://github.com/detekt/detekt) due to its nature for Kotlin. 
+ - The gradlew task and its configuration could be found inside [`quality.gradle.kts`](https://github.com/android10/android-trinity/blob/main/buildSrc/src/main/kotlin/scripts/quality.gradle.kts) file.
+ - cconfiguration Rules are in [config/detekt/detekt.yml](https://github.com/android10/android-trinity/blob/main/config/detekt/detekt.yml).
 
 ## Quality Reports: Code Coverage
 
-TODO(): Config folder
+- The tool chosen here is [Jacoco](https://github.com/jacoco/jacoco) due to its nature and popularity in the community. 
+ - The gradlew task and its configuration could be found inside [`quality.gradle.kts`](https://github.com/android10/android-trinity/blob/main/buildSrc/src/main/kotlin/scripts/quality.gradle.kts) file.
 
 ## How to Contribute
 
-Nothing is set in stone here and things can change and evolve based on the community work and requirements. So if you want to contribute, feel free to open an [issue]() and label it properly with a good description of the **Bug**, **Enhancement**, etc 
+Nothing is set in stone here and things can change and evolve based on the community work and requirements. So if you want to contribute, feel free to open an [issue](https://github.com/android10/android-trinity/issues) and label it properly: **Bug**, **Enhancement**, etc.. or send a [PR](https://github.com/android10/android-trinity/pulls). Please both with a good descriptions of the intention, in order to facilitate review
 
 ## TODO List
 
-- [ ] Gradle Tasks for Publishing to Google Play: [App Bundles]().
+- [ ] Gradle Tasks for Publishing to Google Play: [App Bundles](https://developer.android.com/guide/app-bundle).
 - [ ] Automate the process from **How to Use** section: Idea: `./gradlew setupProject`
 - [ ] Local Feature Flags.
+- [ ] Rename default packages to `io.android-trinity` or `io.android.trinity`.
 - [ ] ???
 - [ ] ???
 
