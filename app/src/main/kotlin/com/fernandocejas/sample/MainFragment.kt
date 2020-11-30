@@ -15,6 +15,23 @@
  */
 package com.fernandocejas.sample
 
+import android.os.Bundle
+import android.view.View
+import androidx.annotation.StringRes
+import com.fernandocejas.sample.core.flags.Flag
 import com.fernandocejas.sample.core.platform.BaseFragment
+import kotlinx.android.synthetic.main.fragment_main.*
 
-class MainFragment : BaseFragment(R.layout.fragment_main)
+class MainFragment : BaseFragment(R.layout.fragment_main) {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //Example code of how Feature Flags can be used.
+        Flag.Hello whenActivated { displayGreeting(R.string.hello) }
+    }
+
+    private fun displayGreeting(@StringRes resId: Int) {
+        tv_greeting.text = getString(resId)
+    }
+}

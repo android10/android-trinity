@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Android Trinity</string>
+
     <string name="hello">Hello World!!!</string>
+    <string name="bye">Hello World!!!</string>
 </resources>
