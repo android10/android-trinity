@@ -31,6 +31,7 @@ Yes, android studio might create a project for you, but there are missing parts,
         - `INTERNAL`
         - `PUBLIC`
  - Kotlin Coroutines
+ - A [Compact Feature Flags Framework](https://github.com/android10/android-trinity/pull/1)
 
 ## What does android-trinity NOT INCLUDE? (likely to change if necessary in future versions)
 
@@ -65,20 +66,60 @@ Let's say you want to write tests (and you should **ALWAYS** do), As mentioned t
 - `UnitTest.kt`: Unit Test base class which setup mocks for you (You only use the `@Mockk` annotation)
 
 ```kotlin 
-TODO()
+class FeatureFlagTest : UnitTest() {
+
+    @Mockk prival val yourMock
+
+    @Test
+    fun `given a feature flag, when it is activated, then executes given logic block`() {
+        val activeFlag = ActiveFeatureFlag()
+        val fakeNavigator = mockk<Navigator>(relaxed = true)
+
+        activeFlag whenActivated {
+            fakeNavigator.doSomething()
+            fakeNavigator.navigateToActiveFeature()
+            fakeNavigator.doSomething()
+        }
+
+        verify(exactly = 1) { fakeNavigator.navigateToActiveFeature() }
+        verify(exactly = 2) { fakeNavigator.doSomething() }
+    }
 ```
 
 - `AndroidTest.kt`: Integration Test base class which setup mocks for you (You only use the `@Mockk` annotation). You might use this classes when they are Android Components involved. It is backed up by [Robolectric](https://github.com/robolectric/robolectric).
 
 ```kotlin 
-TODO()
+class YourTestClass : AndroidTest() {
+
+    @Mockk prival val yourMock
+
+    @Test
+    fun `given something, when something happens, then do something`() {
+        TODO()
+    }
 ```
 
 - `AcceptanceTest.kt`: UI Test base class which setup [Espresso](https://developer.android.com/training/testing/espresso) for you
 
 ```kotlin 
-TODO()
+class MainActivityTest: AcceptanceTest(MainActivity::class.java) {
+
+    @Test
+    fun checkToolBarTest() {
+        onView(withId(R.id.toolbar)).check(matches(isDisplayed()))
+    }
+}
 ```
+
+## Feature Flags
+Android-trinity includes a simple offline feature flags framework with a very simple api generated at compile time. 
+If you want more information, refer to the [introduced pull request](https://github.com/android10/android-trinity/pull/1). (TODO: Add more documentation)
+
+Example of its usage:
+```kotlin
+Flag.Hello whenActivated { displayGreeting(R.string.hello) }
+```
+
 
 ## Quality Reports: Static Analysis
 
@@ -95,7 +136,7 @@ TODO()
 
 - [ ] Gradle Tasks for Publishing to Google Play: [App Bundles](https://developer.android.com/guide/app-bundle).
 - [ ] Automate the process from **How to Use** section: Idea: `./gradlew setupProject`
-- [ ] Local Feature Flags.
+- [X] Local Feature Flags.
 - [ ] Rename default packages to `io.android-trinity` or `io.android.trinity`.
 - [ ] ???
 - [ ] ???
