@@ -54,7 +54,7 @@ Yes, android studio might create a project for you, but there are missing parts,
 
 At the time being there are a couple of manual steps involved since we are at a very early stage. But we believe in sofware evolution right? So stay tuned and check both the **How to Contribute** and **TODO List** sections.
 
- - **STEP 1:** Click on [![Use this template](https://img.shields.io/badge/-Use%20this%20template-brightgreen)](https://github.com/androd10/android-trinity/generate) to create a new repo. 
+ - **STEP 1:** Click on [![Use this template](https://img.shields.io/badge/-Use%20this%20template-brightgreen)](https://github.com/android10/android-trinity/generate) to create a new repo. 
  - **STEP 2:** Import the project in Android Studio
  - **STEP 3:** Rename packages according to your needs. `com.fernandocejas.sample` by default. 
 
