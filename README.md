@@ -1,11 +1,11 @@
 # android-trinity
 This is tiny framework with much of the scaffolding code (with some nice utilities and prepared source code) required to start a new **Android Application.** 
 
-## Background
+## Background 📦
 
 Yes, android studio might create a project for you, but there are missing parts, which I **ALWAYS** end up adding to every single project I create. This tiny Framework (I would say still scaffolding code) aims to solve this by making easy and fast to create an android project with the fundamental building blocks. Check the **TODO** section below for more information on the evolution and progress. 
 
-## What does android-trinity provide?
+## What does android-trinity provide? 🎨
 
 **Freedom.** It uses standard tools but organized in such a way that facilitates android development. You can refactor or change anything but the idea is to have a robust starting point. All the wiring is done for you with the flexibility of being modified according to your needs.   
 
@@ -36,7 +36,7 @@ Yes, android studio might create a project for you, but there are missing parts,
 ## What does android-trinity NOT INCLUDE? (likely to change if necessary in future versions)
 
  - DI. You should choose your Dependency Injection Framework.
- - N0 Navigation Framework. 
+ - NO Navigation Framework. 
  - NO `LiveData` and `ViewModel` libraries since some Engineers might use other approaches at UI level like MVI, MVP, etc.
  - NO Kotlin Flow.
  - NO UI Layouts for Tablet or Android TV support. 
@@ -50,7 +50,7 @@ Yes, android studio might create a project for you, but there are missing parts,
  - `./gradlew compileApp`
  - `./gradlew runApp`
  
-## How to use it
+## How to use it 👣
 
 At the time being there are a couple of manual steps involved since we are at a very early stage. But we believe in sofware evolution right? So stay tuned and check both the **How to Contribute** and **TODO List** sections.
 
@@ -112,6 +112,7 @@ class MainActivityTest: AcceptanceTest(MainActivity::class.java) {
 ```
 
 ## Feature Flags
+
 Android-trinity includes a simple offline feature flags framework with a very simple api generated at compile time. 
 If you want more information, refer to the [introduced pull request](https://github.com/android10/android-trinity/pull/1). (TODO: Add more documentation)
 
