@@ -10,7 +10,7 @@ Yes, android studio might create a project for you, but there are missing parts,
 **Freedom.** It uses standard tools but organized in such a way that facilitates android development. You can refactor or change anything but the idea is to have a robust starting point. All the wiring is done for you with the flexibility of being modified according to your needs.   
 
  - `Kotlin DSL` by default at Gradle build system leve.
- - Static Analisis Code Report (Detekt).
+ - Static Analysis Code Report (Detekt).
  - Code Coverage Report (Jacoco).
  - Base Classes: [`BaseActivity`](https://github.com/android10/android-trinity/blob/main/app/src/main/kotlin/com/fernandocejas/sample/core/platform/BaseActivity.kt) and [`BaseFragments`](https://github.com/android10/android-trinity/blob/main/app/src/main/kotlin/com/fernandocejas/sample/core/platform/BaseFragment.kt).
  - Toolbar with styles pre-defined.
