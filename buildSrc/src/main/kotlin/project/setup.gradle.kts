@@ -18,34 +18,76 @@ package project
 import java.io.File
 import java.io.File.separator as SEPARATOR
 
-val defaultPackageName = "com.fernandocejas.sample"
+/**
+ * ATTENTION: This file is meant to setup the project after being cloned
+ * from this template: https://github.com/android10/android-trinity
+ *
+ * THIS IS A BIT HACKY (NOT PROUD OF IT) BUT IT SERVES ITS PURPOSE.
+ * IT CAN BE SAFELY REMOVED AFTERWARDS IF NOT REMOVED AUTOMATICALLY.
+ */
+
+
+val dirCom = "com"
+val dirFernandoCejas = "fernandocejas"
+val dirSample = "sample"
+val defaultPackageName = "${dirCom}.${dirFernandoCejas}.${dirSample}"
+
 val projectPath: String = rootProject.rootDir.absolutePath
-val directoryList = listOf(
-    File(projectPath.plus(SEPARATOR).plus("app")),
-    File(projectPath.plus(SEPARATOR).plus("buildSrc").plus(SEPARATOR).plus("src")))
+
+val appPath = File(projectPath.plus(SEPARATOR)
+        .plus("app"))
+val buildSrcPath = File(projectPath.plus(SEPARATOR)
+        .plus("buildSrc").plus(SEPARATOR)
+        .plus("src"))
+val currentDirPath = File(buildSrcPath.absolutePath.plus(SEPARATOR)
+        .plus("main").plus(SEPARATOR)
+        .plus("kotlin").plus(SEPARATOR)
+        .plus("project"))
+val directoryList = listOf(appPath ,buildSrcPath)
+
+val appSrcPath = File(projectPath.plus(SEPARATOR)
+        .plus("app").plus(SEPARATOR)
+        .plus("main").plus(SEPARATOR)
+        .plus("kotlin"))
 
 tasks.register("setupProject") {
     description = "Sets up the project. A valid package name should be passed as argument"
 
     // Check valid package name
-    if (validatePackageName("com.java")) {
+    if (validatePackageName("com.example.android")) {
         directoryList.map { directory ->
             // Change package name in source code
             directory
-                .walk()
-                .filter { filterFile(it) }
-                .filter { filterContent(it) }
-                .forEach { println(it) }
-                //.forEach { it.readText().replace(defaultPackageName, "newPackageName".toLowerCase()) }
-
-            // Rename package directories
-
-
-            // Clean up code by removing leftover from this script
-
+                    .walk()
+                    .filter { filterFile(it) }
+                    .filter { filterContent(it) }
+                    .forEach { println(it) }
+            //.forEach { it.readText().replace(defaultPackageName, "newPackageName".toLowerCase()) }
         }
+
+        // Rename package directories. TODO
+        val directories = "com.example.android".split(".")
+        val dirOne = File(appSrcPath.absolutePath.plus(SEPARATOR)
+                .plus(dirCom).plus(SEPARATOR)
+                .plus(dirFernandoCejas).plus(SEPARATOR)
+                .plus(dirSample).plus(SEPARATOR))
+        val dirTwo = File(appSrcPath.absolutePath.plus(SEPARATOR)
+                .plus(dirCom).plus(SEPARATOR)
+                .plus(dirFernandoCejas).plus(SEPARATOR))
+        val dirThree = File(appSrcPath.absolutePath.plus(SEPARATOR)
+                .plus(dirCom).plus(SEPARATOR))
+
+        println("Rename this directory --> ${dirOne.absolutePath} with --> ${directories[2]}")
+        println("Rename this directory --> ${dirTwo.absolutePath} with --> ${directories[1]}")
+        println("Rename this directory --> ${dirThree.absolutePath} with --> ${directories[0]}")
+
+        // Clean up code by removing leftover from this script. TODO
+        val buildGradleFile = File(projectPath.plus(SEPARATOR).plus("build.gradle.kts"))
+        println("Remove this dependency from file --> ${buildGradleFile.absolutePath}")
+        println("Remove this directory --> ${currentDirPath.absolutePath}")
+
     } else {
-        println("Wrong package name")
+        println("Wrong PACKAGE NAME. Example: 'com.yourname.android'")
     }
 }
 
@@ -72,5 +114,7 @@ fun validatePackageName(packageName: String): Boolean {
     // - must always end with a non-dot character.
     // - must start with a lowercase letter by convention.
     val regex = "(^(?:[a-z_]+(?:\\d*[a-zA-Z_]*)*)(?:\\.[a-z_]+(?:\\d*[a-zA-Z_]*)*)*\$)".toRegex()
-    return regex.matches(packageName)
+
+    // force to match the regex and at least the package name should be: com.example.android.
+    return (regex.matches(packageName) && packageName.trim().split(".").size == 3)
 }
