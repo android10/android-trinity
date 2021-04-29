@@ -118,3 +118,17 @@ fun validatePackageName(packageName: String): Boolean {
     // force to match the regex and at least the package name should be: com.example.android.
     return (regex.matches(packageName) && packageName.trim().split(".").size == 3)
 }
+
+open class ConfigTask: DefaultTask() {
+    @get:Input
+    var packageName = ""
+
+    @TaskAction
+    fun setupProject() {
+        println("Package name parameter --> $packageName")
+    }
+}
+
+tasks.register("configProject", ConfigTask::class) {
+    description = "Sets up the project. A valid package name should be passed as argument"
+}
