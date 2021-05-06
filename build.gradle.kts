@@ -1,4 +1,5 @@
 plugins {
+  id("project.setup") // This will be removed automatically after `./gradlew setupProject `
   id(ScriptPlugins.infrastructure)
 }
 

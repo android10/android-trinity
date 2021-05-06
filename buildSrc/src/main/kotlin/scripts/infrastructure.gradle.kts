@@ -18,7 +18,7 @@ package scripts
 import scripts.Variants_gradle.*
 import java.util.*
 
-tasks.register("clean", Delete::class){
+tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }
 
